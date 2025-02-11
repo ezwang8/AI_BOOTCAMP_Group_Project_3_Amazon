@@ -55,13 +55,13 @@ reviews_data.loc[:,'cleaned_reviews'] = reviews_data['review_combined'].apply(la
 Using Word Cloud we created two images which shows the different before we clean "Stop Words"
 
 <p align="center">
-  <img width="850" height="600" src="https://github.com/user-attachments/assets/ee7e723b-2ea7-4aec-a48a-ae2174d75197" alt="Description" width="850">
+  <img width="1000" height="600" src="https://github.com/user-attachments/assets/ee7e723b-2ea7-4aec-a48a-ae2174d75197" alt="Description" width="1000">
 </p>
 
 Word Cloud image after Cleaning Stop words
 
 <p align="center">
-  <img width="850" height="600" src="https://github.com/user-attachments/assets/526d9fea-50a8-4d9a-b9af-9632b955ceda" alt="Description" width="850">
+  <img width="1000" height="600" src="https://github.com/user-attachments/assets/526d9fea-50a8-4d9a-b9af-9632b955ceda" alt="Description" width="1000">
 </p>
 
 ## Visualizing the Data
@@ -87,18 +87,38 @@ def barplot_most_freq_words(attribute, num_of_words, label):
 Below is the graph which shows the output of the function which we used to find top 20 words in uncleaned data
 
 <p align="center">
-  <img width="850" height="600" src="https://github.com/user-attachments/assets/32f48934-3bc0-407b-97b7-c1346b083588" alt="Description" width="850">
+  <img width="1000" height="600" src="https://github.com/user-attachments/assets/32f48934-3bc0-407b-97b7-c1346b083588" alt="Description" width="1000">
 </p>
 
 Below is the graph when functioned is used to against cleaned data
 
 <p align="center">
-  <img width="850" height="600" src="https://github.com/user-attachments/assets/757852eb-1f40-4681-8fa2-7ac0096f2482" alt="Description" width="850">
+  <img width="1000" height="600" src="https://github.com/user-attachments/assets/757852eb-1f40-4681-8fa2-7ac0096f2482" alt="Description" width="1000">
 </p>
 
 After this our team wanted to go DEEEEP! we wanted to know what are the common words being used for all the star ratings.
 
 <p align="center">
-  <img width="850" height="600" src="https://github.com/user-attachments/assets/92b2b839-240c-4681-a77b-f14b8f3fe8bd" alt="Description" width="850">
+  <img width="1000" height="600" src="https://github.com/user-attachments/assets/92b2b839-240c-4681-a77b-f14b8f3fe8bd" alt="Description" width="1000">
+</p>
+
+While this is one way of looking at data we want to know sequencing like which words are used in sequence. For this we used "ngrams" from "nltk.util" the function created as follows
+
+```python
+def plot_ngram(attribute, n):
+    all_words = ' '.join(reviews_data[attribute]).split()
+    n_grams = list(ngrams(all_words, n))
+    n_gram_freq = FreqDist(n_grams)
+    
+    plt.figure(figsize=(10, 6))
+    n_gram_freq.plot(20, cumulative=False)
+
+    plt.show()
+```
+
+The result of this funtion when used against "Cleaned reviews"
+
+<p align="center">
+  <img width="1000" height="600" src="https://github.com/user-attachments/assets/e26177a8-018b-49c6-8941-f2ac98ba58a6" alt="Description" width="1000">
 </p>
 
