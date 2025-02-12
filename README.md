@@ -9,8 +9,9 @@ This Project will be looking at creating an AI model which will help users find 
 2. [About the Data](#About-the-Data)
 3. [Cleaning Up the Data](#Cleaning-up-the-Data)
 4. [Visualizing the Data](#Visualizing-the-Data)
-5. [Creating the Model](#Creating-the-model)
-6. [Conclusion](#Conclusion)
+5. [Spam Detection](#Spam-Detection)
+6. [Creating the Model](#Creating-the-model)
+7. [Conclusion](#Conclusion)
 
 ## Introduction
 At this point in time, everything is being reviews products, services, businesses, restaurants, movies, books and even personal performance - essentially anything where people can provide feedback or critical analysis. The problem with this review system is that It can be manipulated by providing fake review, paid reviews etc. which would unnaturally increase or decrease the rating of a product. Our goal in this project in to create an AI model which would be able to differentiate real reviews from fake and at the end determine what is the actual rating of the product.
@@ -134,3 +135,18 @@ The result of this funtion when used against "Cleaned reviews"
   <img width="1000" height="600" src="https://github.com/user-attachments/assets/e26177a8-018b-49c6-8941-f2ac98ba58a6" alt="Description" width="1000">
 </p>
 
+## Spam Detection
+Spam is a major problem in the current world we are living in. We see SPAM in emails, phone calls, messages etc. Why can't we see spam reviews. Below are the steps we have gone through on how we came to detect SPAM in our reviews.
+
+### 1. Spam Words :
+   We came up with everyday words that co-inside with what spam might be and tried to find out if our data contains these works.
+```python
+spam_related_words = [
+    "scam", "fake", "bot", "fraudulent", "ripoff", "misleading",
+    "counterfeit", "false", "bait", "switch", "waste", "useless"
+]
+```
+### 2. Too Few Words : 
+  If the review contains too little charactors which might be viewed as a spam review. We have decided any reviews with less than 5 charactors     is a spam review.
+### 3. Too Many Reviews from the same Customer too Soon:
+  If the same customer is leaving multiple reviews on the same day, we decided that might be a spam review
