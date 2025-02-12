@@ -168,10 +168,15 @@ Name: count, dtype: int64
 ### 4. Repetitive Reviews by the Same Customer
   Some Customers leave generic reviews, but same customer leaving similar reviews to different products can be concluded as spam reviews. We have setup a threshold of 90% similarity. We looked at each customer's reviews and compared it to other reviews done by the same customer. Below is some of the output we found where customers are leaving similar reviews.
 
-|   | customer_id |                                          review_1 |                                          review_2 | similarity_score |     ROC score    |
-|--:|------------:|--------------------------------------------------:|--------------------------------------------------:|-----------------:|------------------|
-| 0 |      109766 |                                 Item as described |                                 Item as described |         1.000000 |     68           |
-| 1 |      111870 |                                              Good |                                              Good |         1.000000 |     74.96        |
-| 2 |      123943 | The video not clear.<br />The sound is bad and... | The video not clear.<br />The sound is bad and... |         0.926773 |     89.89        |
-| 3 |      137226 |                                            great! |                                            great! |         1.000000 |     79.56        |
-| 4 |      154445 |                                             great |                                             great |         1.000000 |                  |
+|   | customer_id |                                          review_1 |                                          review_2 | similarity_score |
+|--:|------------:|--------------------------------------------------:|--------------------------------------------------:|-----------------:|
+| 0 |      109766 |                                 Item as described |                                 Item as described |         1.000000 |
+| 1 |      111870 |                                              Good |                                              Good |         1.000000 |
+| 2 |      123943 | The video not clear.<br />The sound is bad and... | The video not clear.<br />The sound is bad and... |         0.926773 |
+| 3 |      137226 |                                            great! |                                            great! |         1.000000 |
+| 4 |      154445 |                                             great |                                             great |         1.000000 |
+
+### 5. Review with URLs
+Reviews that contain excessive or irrelevant URLs are generally considered spam, as they are often used as a tactic to artificailly boost product ratings in search engines by manupilating link profiles. These type of reviews are considered as SPAM industry wide. we used a logic of "if a review_body has URLs, or any html code that is spam". We created a new column to give the review 0 or 1 depending if that review is spam or not.
+
+
