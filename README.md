@@ -149,4 +149,29 @@ spam_related_words = [
 ### 2. Too Few Words : 
   If the review contains too little charactors which might be viewed as a spam review. We have decided any reviews with less than 5 charactors     is a spam review.
 ### 3. Too Many Reviews from the same Customer too Soon:
-  If the same customer is leaving multiple reviews on the same day, we decided that might be a spam review
+  If the same customer is leaving multiple reviews on the same day, we decided that might be a spam review. No one would have the time to leave more than couple reviews a day, but the data shows customers who have written more reviews on the same day. Below code is able to findout which customers are doing this.
+  ```python
+# Flag customers who posted 10 or more fast reviews in a single day
+spam_fast_customers = fast_reviews_per_day[fast_reviews_per_day["fast_review_count"] >= 10]["customer_id"].unique()
+
+# Add a new spam column for fast reviewers
+df["spam_fast_reviews"] = df["customer_id"].apply(lambda x: 1 if x in spam_fast_customers else 0)
+
+# Check how many customers were flagged
+print(df["spam_fast_reviews"].value_counts())
+
+spam_fast_reviews
+0    9892
+1     108
+Name: count, dtype: int64
+```
+### 4. Repetitive Reviews by the Same Customer
+  Some Customers leave generic reviews, but same customer leaving similar reviews to different products can be concluded as spam reviews. We have setup a threshold of 90% similarity. We looked at each customer's reviews and compared it to other reviews done by the same customer. Below is some of the output we found where customers are leaving similar reviews.
+
+|   | customer_id |                                          review_1 |                                          review_2 | similarity_score |     ROC score    |
+|--:|------------:|--------------------------------------------------:|--------------------------------------------------:|-----------------:|------------------|
+| 0 |      109766 |                                 Item as described |                                 Item as described |         1.000000 |     68           |
+| 1 |      111870 |                                              Good |                                              Good |         1.000000 |     74.96        |
+| 2 |      123943 | The video not clear.<br />The sound is bad and... | The video not clear.<br />The sound is bad and... |         0.926773 |     89.89        |
+| 3 |      137226 |                                            great! |                                            great! |         1.000000 |     79.56        |
+| 4 |      154445 |                                             great |                                             great |         1.000000 |                  |
