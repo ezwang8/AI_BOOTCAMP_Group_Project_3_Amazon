@@ -54,6 +54,18 @@ reviews_data.loc[:,'cleaned_reviews'] = reviews_data['review_combined'].apply(la
 
 Using Word Cloud we created two images which shows the different before we clean "Stop Words"
 
+```python
+def worl_cloud(attribute, label):
+  all_reviews_combined = " ".join(reviews_data[attribute])
+  wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_reviews_combined)
+  plt.figure(figsize=(10, 6))
+  plt.imshow(wordcloud, interpolation='bilinear')
+  plt.axis('off')
+  plt.title(f'Word Cloud for {label}')
+  plt.show()
+```
+
+
 <p align="center">
   <img width="1000" height="600" src="https://github.com/user-attachments/assets/ee7e723b-2ea7-4aec-a48a-ae2174d75197" alt="Description" width="1000">
 </p>
