@@ -225,6 +225,25 @@ Best parameters for review body: solver= saga, penalty= l2, C= 0.46416 <br>
 Best parameters for headlines: solver= saga, penalty= l2, C= 0.46416 <br>
 Further parameters to test: max_iter <br>
 
+Took part in the cleaning and preprocessing and model training for the project. 
+
+Primary focus initially was to ensure that the data was cleaned and had the proper columns and information needed.
+
+Following this, went into the processing in order to prepare machine learning. This involved the removal of stopwords and applying a tokenizer. 
+
+Lastly, then proceeded to test different models, between logistics, randomforest, and xgboost, all with their own strengths. 
+Logistic being the baseline tester, randomforest due to it's ability to use decisiontrees, and lastly xgboost because of its abilities
+to detect patterns especially across sentiment mapping. 
+
+## Conclusion
+
+This Model has multiple opportunities for expansion, We can use this model to get reviews on
+1. How good a Book is ?
+2. Is a restaurant is as Good as the reviews say ?
+
+There was a lack of time and computational resources to get better accuracy on our scores and looking into other optimization options. With enough time we were looking at including a Text-to-Speech model, where if we input a reviews we would hear if this is "spam review" or a "good review."
+
+If there is anything more data points we need, we would think we need Location data as another facet as purchase verification.
 
 
 
